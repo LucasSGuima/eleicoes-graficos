@@ -1,18 +1,15 @@
 <template>
-  <div id="app" class="flex flex-col items-center justify-center w-full h-screen">
+  <div id="app" class="flex flex-col items-center justify-center w-full h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
     <VoteRace />
-    <BottomNavigation />
   </div>
 </template>
 
 <script>
   import VoteRace from './components/VoteRace.vue';
-  import BottomNavigation from './components/BottomNavigation.vue';
 
   export default {
     components: {
       VoteRace,
-      BottomNavigation
     },
   };
 </script>

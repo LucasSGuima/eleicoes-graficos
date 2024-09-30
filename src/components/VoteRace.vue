@@ -1,9 +1,9 @@
 <template>
-    <div class="max-w-4xl w-full bg-white rounded-lg shadow-xl dark:bg-gray-800 p-4 md:p-6">
-        <div class="flex justify-between items-center border-gray-200 border-b dark:border-gray-700 pb-3">
+    <div class="max-w-4xl p-4 bg-white rounded-lg shadow-xl dark:bg-gray-800 md:p-6" style="width: 98%;">
+        <div class="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-gray-700">
             <dl>
-                <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Campanha Eleitoral</dt>
-                <dd id="totalVotes" class="leading-none font-bold text-gray-900 dark:text-white">
+                <dt class="pb-1 text-base font-normal text-gray-500 dark:text-gray-400">Campanha Eleitoral</dt>
+                <dd id="totalVotes" class="font-bold leading-none text-gray-900 dark:text-white">
                     <span class="text-base">Votos Computados: </span>
                     <span class="text-xl">{{ totalVotes }}</span>
                 </dd>
@@ -23,7 +23,7 @@
 
         <div id="bar-chart" class="mt-4"></div>
 
-        <div id="lastUpdate" class="text-center my-2 text-lg">{{ lastUpdate }}</div>
+        <div id="lastUpdate" class="my-2 text-lg text-center">{{ lastUpdate }}</div>
     </div>
 </template>
 

@@ -29,7 +29,6 @@
 
 <script>
     import ApexCharts from 'apexcharts';
-    import VueApexCharts from 'vue3-apexcharts'; // Certifique-se de que este pacote está instalado
 
     export default {
         name: 'VoteRace',
@@ -115,10 +114,12 @@
                 plotOptions: {
                     bar: {
                         horizontal: true,
+                        distributed: true,
                         borderRadius: 20,
                         borderRadiusApplication: 'end',
                     },
                 },
+                colors: ['#FF5733', '#33FF57', '#3357FF', '#FF33A6'],
                 dataLabels: {
                     enabled: false
                 },
@@ -130,9 +131,12 @@
                         formatter: (value) => value, // Exibe diretamente a quantidade de votos
                     },
                 },
+                yaxis: {
+                    show: false, // Remove as categorias do eixo y
+                },
                 tooltip: {
-                    shared: true,
-                    intersect: false,
+                    shared: false,
+                    intersect: true,
                     formatter: (val) => `${val.seriesName}: ${val.value} votos`,
                 },
                 fill: {

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "animejs": "^3.2.2",
     "apexcharts": "^3.54.0",
     "canvas-confetti": "^1.9.3",
     "flowbite": "^2.5.2",

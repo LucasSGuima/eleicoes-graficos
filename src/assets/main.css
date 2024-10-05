@@ -1,4 +1,37 @@
-@import 'flowbite';
+@import "flowbite";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    @keyframes animate {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+      }
+      100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+      }
+    }
+  
+    /* Posicionar os círculos mais nas bordas laterais */
+    .animate-move-1 { left: 7%; animation: animate 25s linear infinite; }
+    .animate-move-2 { left: 9%; animation: animate 12s linear infinite 2s; }
+    .animate-move-3 { left: 5%; animation: animate 25s linear infinite 4s; }
+    .animate-move-4 { left: 90%; animation: animate 18s linear infinite; }
+    .animate-move-5 { left: 3%; animation: animate 25s linear infinite; }
+    .animate-move-6 { left: 97%; animation: animate 25s linear infinite 3s; }
+    .animate-move-7 { left: 1%; animation: animate 25s linear infinite 7s; }
+    .animate-move-8 { left: 96%; animation: animate 45s linear infinite 15s; }
+    .animate-move-9 { left: 4%; animation: animate 35s linear infinite 2s; }
+    .animate-move-10 { left: 92%; animation: animate 11s linear infinite; }
+    .animate-move-11 { left: 5%; animation: animate 25s linear infinite 5s; }
+    .animate-move-12 { left: 9%; animation: animate 28s linear infinite 3s; }
+    .animate-move-13 { left: 3%; animation: animate 22s linear infinite 8s; }
+    .animate-move-14 { left: 97%; animation: animate 40s linear infinite 6s; }
+    .animate-move-15 { left: 1%; animation: animate 30s linear infinite 9s; }
+    .animate-move-16 { left: 99%; animation: animate 18s linear infinite 12s; }
+  }

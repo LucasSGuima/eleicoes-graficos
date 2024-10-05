@@ -1,40 +1,48 @@
 <template>
-  <main id="app" class="container flex items-center justify-center w-full h-auto px-4 py-10 mx-auto sm:py-0 sm:h-screen">
+  <main id="app" class="container flex items-center justify-center px-4 py-10 mx-auto lg:h-screen">
     
-    <celebration v-if="celebration">
+    <div v-if="celebration">
       <div v-for="(candidate, index) in candidates" :key="index">
 
-        <candidate v-if="candidate.elected" class="flex items-center justify-center mt-5">
-          <img class="rounded-full h-50 w-50" :src="candidate.image" alt="image description" />
+        <div v-if="candidate.elected" class="flex flex-col items-center justify-center md:h-screen">
+          <div class="flex items-center justify-center">
+            <img class="w-full rounded-full md:w-4/5" :src="candidate.image" alt="image description" />
+          </div>
 
-          <div class="flex-grow ml-4">
-            <div class="flex justify-between">
-              <div class="flex flex-col items-start">
-                <group>
-                  <span class="text-6xl font-bold">{{ candidate.name }}</span>
-                  <span
-                    class="bg-green-100 text-green-800 text-6xl font-bold mx-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Eleito</span>
-                </group>
+          <div>
+            <hr class="mt-5 mb-5">
+          </div>
 
-                <group class="flex justify-between w-full mt-10 items">
-                  <span class="mb-1 text-3xl font-extrabold">{{ candidate.party }}</span>
-                  <group class="flex flex-col">
-                    <span class="mb-1 text-4xl font-bold">{{ candidate.percent }}%</span>
-                    <span class="mb-1 text-4xl font-medium text-gray-400">{{ candidate.votes }} votos</span>
-                  </group>
-                </group>
+
+          <div class="flex flex-col justify-center">
+            
+            <div class="w-full">
+              <p class="w-full text-3xl font-bold leading-normal text-center md:text-5xl lg:text-7xl">{{ candidate.name }}</p>
+            </div>
+
+            <hr class="mt-5 mb-5">
+
+            <div class="flex flex-col justify-between w-full">
+              <div class="flex flex-col items-center justify-center w-full">
+                <span class="mb-1 text-4xl font-bold">{{ candidate.percent }}%</span>
+                <span class="mb-1 text-4xl font-medium text-gray-400">{{ candidate.votes }} votos</span>
               </div>
             </div>
-          </div>
-        </candidate>
-      </div>
-    </celebration>
+            
+            <hr class="mt-5 mb-5">
+            
+            <p class="px-3 py-1 font-bold text-center text-green-800 bg-green-200 text-7xl rounded-3xl dark:bg-green-900 dark:text-green-300">Eleito</p>
 
-    <voteSection v-else="celebration" class="w-full">
-      <blockSection class="flex flex-col items-center justify-center w-full">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-else="celebration" class="flex flex-col items-center justify-center w-full">
+      <div class="w-full lg:w-3/5">
         <section>
           <p class="text-lg font-normal text-gray-400">
-            última atualização em {{ updateTime }} (horário de brasília)
+            Última atualização em {{ updateTime }} (horário de brasília)
           </p>
   
           <div class="flex items-end justify-between mt-5">
@@ -49,8 +57,9 @@
           <p class="text-lg text-gray-600">seções apuradas: <span ref="secoesApuradasRef">{{ secoesApuradas }}</span></p>
         </section>
   
-        <section class="mt-20">
-          <p class="text-2xl font-bold text-gray-900">Prefeito</p>
+        <section>
+          <hr class="mt-5 mb-5">
+          <p class="text-2xl font-bold text-gray-900">Candidatos a prefeito</p>
   
           <!-- Renderiza a lista de candidatos -->
           <div v-for="(candidate, index) in candidates" :key="index">
@@ -63,9 +72,9 @@
                   <div class="flex flex-col items-start">
                     <span class="text-lg font-bold">{{ candidate.name }}</span>
   
-                    <group>
+                    <div>
                       <span class="mb-1 text-sm font-lg">{{ candidate.party }}</span>
-                    </group>
+                    </div>
                   </div>
   
                   <div class="text-right">
@@ -91,10 +100,13 @@
   
           </div>
         </section>
-      </blockSection>
+      </div>
 
-      <blockSection class="flex flex-col items-center justify-center w-full">
-        <section class="grid grid-cols-1 gap-4 mt-20 text-center md:w-3/5 sm:grid-cols-2 lg:grid-cols-5">
+      <div class="w-full md:w-4/5">
+        <hr class="mt-5 mb-5">
+        <p class="text-2xl font-bold text-gray-900">Estatísticas</p>
+        
+        <div class="grid gap-4 mt-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
       
           <div class="flex flex-col items-center p-4 text-center bg-white border border-gray-200 rounded-lg shadow">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -129,7 +141,7 @@
             </div>
           </div>
       
-          <div class="flex flex-col items-center p-4 text-center bg-white border border-gray-200 rounded-lg shadow lg:items-end">
+          <div class="flex flex-col items-center p-4 text-center bg-white border border-gray-200 rounded-lg shadow">
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
@@ -142,7 +154,7 @@
             </div>
           </div>
 
-          <div class="flex flex-col items-center col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow">
+          <div class="flex flex-col items-center col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow md:col-span-1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
             </svg>
@@ -151,10 +163,9 @@
               <span ref="totalRef">{{ total }}</span>
             </div>
           </div>
-        </section>
-      </blockSection>
-      
-    </voteSection>
+        </div>
+      </div>
+    </div>
 
   </main>
 </template>
@@ -276,7 +287,7 @@
 
       launchConfetti() {
         // Primeira animação de confete (continua por 15 segundos)
-        var end = Date.now() + (100 * 1000);
+        var end = Date.now() + (100 * 100000);
         var colors = ['#bb0000', '#ffffff'];
 
         (function frame() {

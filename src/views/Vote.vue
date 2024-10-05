@@ -6,7 +6,7 @@
   
           <div v-if="candidate.elected" class="flex flex-col items-center justify-center md:h-screen">
             <div class="flex items-center justify-center">
-              <img class="w-full rounded-full md:w-4/5" :src="candidate.image" alt="image description" />
+              <img class="object-cover object-top w-full h-full rounded-full md:w-4/5" :src="candidate.image" alt="image description" />
             </div>
   
             <div>
@@ -65,7 +65,7 @@
             <div v-for="(candidate, index) in candidates" :key="index">
     
               <candidate class="flex items-center mt-5">
-                <img class="w-20 h-20 rounded-full" :src="candidate.image" alt="image description" />
+                <img class="object-cover object-top w-20 h-20 rounded-full" :src="candidate.image" alt="image description" />
     
                 <div class="flex-grow ml-4">
                   <div class="flex justify-between">

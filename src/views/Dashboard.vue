@@ -15,32 +15,45 @@
             Selecionar Seção
           </label>
           
-          <select id="secaoSelect" v-model="selectedSecao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+          <!-- <select id="secaoSelect" v-model="selectedSecao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
             <option value="" disabled>Escolha uma seção</option>
             <option v-for="secao in secoes" :key="secao.id" :value="secao.id">
               Seção: {{ secao.secao }} - Local: {{ secao.local_votacao }} - Aptos: {{ secao.aptos }}
             </option>
-          </select>
+          </select> -->
+
+          <multiselect
+            v-model="selectedSecao"
+            :options="secoes"
+            :custom-label="secaoLabel"
+            placeholder="Escolha uma seção"
+            label="secao"
+            track-by="id"
+            :close-on-select="true"
+            :hide-selected="true"
+            :preserve-search="true"
+            :allow-empty="false"
+          ></multiselect>
 
           <div v-if="selectedSecao" class="mt-6">
 
             <hr class="mt-10 mb-10">
-            
-            <h3 class="mb-2 text-lg">Adicionar Apuração para Seção {{ selectedSecao }}</h3>
+
+            <h3 class="mb-5 text-lg font-bold">Adicionar Apuração para Seção {{ selectedSecao.id }}</h3>
 
             <div class="grid gap-6 mb-6 md:grid-cols-3">
               <div class="mb-6">
-                <label for="jan" class="block mb-2 text-sm font-medium text-gray-900">Total de Votos em Janeiro</label>
+                <label for="jan" class="block mb-2 text-sm font-medium text-gray-900">Total de Votos em Jan</label>
                 <input v-model.number="apuracao.jan" min="0" id="jan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="0" type="number" required>
               </div>
 
               <div class="mb-6">
-                <label for="jun" class="block mb-2 text-sm font-medium text-gray-900">Total de Votos em Junho</label>
+                <label for="jun" class="block mb-2 text-sm font-medium text-gray-900">Total de Votos em Junio</label>
                 <input v-model.number="apuracao.junio" min="0" id="jun" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="0" type="number" required>
               </div>
 
               <div class="mb-6">
-                <label for="nego" class="block mb-2 text-sm font-medium text-gray-900">Total de Votos Negativos</label>
+                <label for="nego" class="block mb-2 text-sm font-medium text-gray-900">Total de Votos Nego</label>
                 <input v-model.number="apuracao.nego" min="0" id="nego" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="0" type="number" required>
               </div>
 
@@ -60,8 +73,13 @@
               </div>
             </div>
             
-            <button class="p-2 text-white bg-green-500 rounded-md">Salvar Apuração</button>
-            
+            <div class="flex flex-col items-end justify-center w-full">
+              <div class="p-2 my-2 bg-white border border-gray-200 rounded-lg shadow">
+                <p class="font-semibold">{{ totalVotos }} / {{ selectedSecao.aptos }} </p>
+              </div>
+              
+              <button class="p-2 text-white bg-green-500 rounded-md">Salvar Apuração</button>
+            </div>
           </div>
         </form>
 
@@ -145,17 +163,48 @@
       </div>
     </div>
   </div>
+    
+
+
+  <div data-dial-init class="fixed end-6 bottom-6 group">
+    <div id="speed-dial-menu-square" class="flex flex-col items-center hidden mb-4 space-y-2">
+        <button @click="enviarRequisicao" type="button" data-tooltip-target="tooltip-share" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+            </svg>
+            <span class="sr-only">Celebração</span>
+        </button>
+        <div id="tooltip-share" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Celebração
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+    </div>
+    <button type="button" data-dial-toggle="speed-dial-menu-square" aria-controls="speed-dial-menu-square" aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-lg w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+        <svg class="w-5 h-5 transition-transform group-hover:rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+        </svg>
+        <span class="sr-only">Open actions menu</span>
+    </button>
+  </div>
+
+
 </template>
 
 <script>
   import { onMounted } from 'vue'
   import { initFlowbite } from 'flowbite'
-
+  import Multiselect from 'vue-multiselect';
+  import 'vue-multiselect/dist/vue-multiselect.min.css';
+  
   onMounted(() => {
     initFlowbite();
   })
 
   export default {
+    components: {
+      Multiselect,
+    },
+    
     data() {
       return {
         secoes: [],
@@ -187,6 +236,14 @@
           );
         });
       },
+      secaoLabel() {
+        return (secao) => {
+          return `Seção: ${secao.secao} - Local: ${secao.local_votacao} - Aptos: ${secao.aptos}`;
+        };
+      },
+      totalVotos() {
+        return this.apuracao.jan + this.apuracao.junio + this.apuracao.nego + this.apuracao.brancos + this.apuracao.nulos + this.apuracao.abstencao;
+      }
     },
 
     async created() {
@@ -195,6 +252,15 @@
     },
 
     methods: {
+      async enviarRequisicao() {
+        try {
+          const response = await fetch(import.meta.env.VITE_API_CELEBRATION);
+          console.log('Resposta da API:', response.data);
+        } catch (error) {
+          console.error('Erro ao fazer a requisição:', error);
+        }
+      },
+
       async fetchSecoes() {
         const response = await fetch(import.meta.env.VITE_API_SECOES);
         this.secoes = await response.json();
@@ -211,7 +277,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ ...this.apuracao, secao_id: this.selectedSecao }),
+          body: JSON.stringify({ ...this.apuracao, secao_id: this.selectedSecao.id }),
         });
 
         if (response.ok) {
@@ -246,5 +312,5 @@
 </script>
 
 <style scoped>
-  /* Estilos personalizados se necessário */
+
 </style>

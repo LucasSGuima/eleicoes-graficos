@@ -169,22 +169,21 @@
     </div>
 
     <ul class="circles">
-      <li class="hidden lg:block lg:absolute w-[80px] h-[80px] bg-gray-500 bg-opacity-20 rounded-full animate-move-1"></li>
-      <li class="hidden lg:block lg:absolute w-[20px] h-[20px] bg-gray-500 bg-opacity-20 rounded-full animate-move-2"></li>
-      <li class="hidden lg:block lg:absolute w-[20px] h-[20px] bg-gray-500 bg-opacity-20 rounded-full animate-move-3"></li>
-      <li class="hidden lg:block lg:absolute w-[60px] h-[60px] bg-gray-500 bg-opacity-20 rounded-full animate-move-4"></li>
-      <li class="hidden lg:block lg:absolute w-[20px] h-[20px] bg-gray-500 bg-opacity-20 rounded-full animate-move-5"></li>
-      <li class="hidden lg:block lg:absolute w-[110px] h-[110px] bg-gray-500 bg-opacity-20 rounded-full animate-move-6"></li>
-      <li class="hidden lg:block lg:absolute w-[150px] h-[150px] bg-gray-500 bg-opacity-20 rounded-full animate-move-7"></li>
-      <li class="hidden lg:block lg:absolute w-[25px] h-[25px] bg-gray-500 bg-opacity-20 rounded-full animate-move-8"></li>
-      <li class="hidden lg:block lg:absolute w-[15px] h-[15px] bg-gray-500 bg-opacity-20 rounded-full animate-move-9"></li>
-      <li class="hidden lg:block lg:absolute w-[150px] h-[150px] bg-gray-500 bg-opacity-20 rounded-full animate-move-10"></li>
-      <li class="hidden lg:block lg:absolute w-[50px] h-[50px] bg-gray-500 bg-opacity-20 rounded-full animate-move-11"></li>
-      <li class="hidden lg:block lg:absolute w-[40px] h-[40px] bg-gray-500 bg-opacity-20 rounded-full animate-move-12"></li>
-      <li class="hidden lg:block lg:absolute w-[30px] h-[30px] bg-gray-500 bg-opacity-20 rounded-full animate-move-13"></li>
-      <li class="hidden lg:block lg:absolute w-[120px] h-[120px] bg-gray-500 bg-opacity-20 rounded-full animate-move-14"></li>
-      <li class="hidden lg:block lg:absolute w-[10px] h-[10px] bg-gray-500 bg-opacity-20 rounded-full animate-move-15"></li>
-      <li class="hidden lg:block lg:absolute w-[80px] h-[80px] bg-gray-500 bg-opacity-20 rounded-full animate-move-16"></li>
+      <li class="hidden lg:block lg:absolute w-[20px] h-[20px] bg-blue-500 bg-opacity-40 rounded-full animate-move-2"></li>
+      <li class="hidden lg:block lg:absolute w-[20px] h-[20px] bg-blue-500 bg-opacity-40 rounded-full animate-move-3"></li>
+      <li class="hidden lg:block lg:absolute w-[60px] h-[60px] bg-blue-500 bg-opacity-40 rounded-full animate-move-4"></li>
+      <li class="hidden lg:block lg:absolute w-[20px] h-[20px] bg-blue-500 bg-opacity-40 rounded-full animate-move-5"></li>
+      <li class="hidden lg:block lg:absolute w-[110px] h-[110px] bg-blue-500 bg-opacity-40 rounded-full animate-move-6"></li>
+      <li class="hidden lg:block lg:absolute w-[150px] h-[150px] bg-blue-500 bg-opacity-40 rounded-full animate-move-7"></li>
+      <li class="hidden lg:block lg:absolute w-[25px] h-[25px] bg-blue-500 bg-opacity-40 rounded-full animate-move-8"></li>
+      <li class="hidden lg:block lg:absolute w-[15px] h-[15px] bg-blue-500 bg-opacity-40 rounded-full animate-move-9"></li>
+      <li class="hidden lg:block lg:absolute w-[150px] h-[150px] bg-blue-500 bg-opacity-40 rounded-full animate-move-10"></li>
+      <li class="hidden lg:block lg:absolute w-[50px] h-[50px] bg-blue-500 bg-opacity-40 rounded-full animate-move-11"></li>
+      <li class="hidden lg:block lg:absolute w-[40px] h-[40px] bg-blue-500 bg-opacity-40 rounded-full animate-move-12"></li>
+      <li class="hidden lg:block lg:absolute w-[30px] h-[30px] bg-blue-500 bg-opacity-40 rounded-full animate-move-13"></li>
+      <li class="hidden lg:block lg:absolute w-[120px] h-[120px] bg-blue-500 bg-opacity-40 rounded-full animate-move-14"></li>
+      <li class="hidden lg:block lg:absolute w-[10px] h-[10px] bg-blue-500 bg-opacity-40 rounded-full animate-move-15"></li>
+      <li class="hidden lg:block lg:absolute w-[80px] h-[80px] bg-blue-500 bg-opacity-40 rounded-full animate-move-16"></li>
     </ul>
     
   </main>

@@ -114,7 +114,7 @@
               </svg>
               <span class="font-bold">VÁLIDOS</span>
               <div class="flex">
-                <span ref="validosRef">{{ validos }}</span>
+                <span ref="validosRef">{{ validos }}</span>&nbsp;
                 (<span ref="validosPercentRef">{{ validosPercent }}</span>%)
               </div>
             </div>
@@ -125,8 +125,8 @@
               </svg>
               <span class="font-bold">BRANCOS</span>
               <div class="flex">
-                <span ref="brancosRef">{{ brancos }}</span>
-                (<span ref="brancosPercentRef">{{ brancosPercent }}</span>%)
+                <span ref="brancosRef">{{ brancos }} </span>&nbsp;
+                 (<span ref="brancosPercentRef">{{ brancosPercent }}</span>%)
               </div>
             </div>
         
@@ -136,8 +136,8 @@
               </svg>
               <span class="font-bold">NULOS</span>
               <div class="flex">
-                <span ref="nulosRef">{{ nulos }}</span>
-                (<span ref="nulosPercentRef">{{ nulosPercent }}</span>%)
+                <span ref="nulosRef">{{ nulos }} </span>&nbsp;
+                 (<span ref="nulosPercentRef">{{ nulosPercent }}</span>%)
               </div>
             </div>
         
@@ -149,8 +149,8 @@
               </span>
               <span class="font-bold">ABSTENÇÕES</span>
               <div class="flex">
-                <span ref="abstencoesRef">{{ abstencoes }}</span>
-                (<span ref="abstencoesPercentRef">{{ abstencoesPercent }}</span>%)
+                <span ref="abstencoesRef">{{ abstencoes }} </span>&nbsp;
+                 (<span ref="abstencoesPercentRef">{{ abstencoesPercent }}</span>%)
               </div>
             </div>
   
@@ -231,14 +231,14 @@
 
     methods: {
       setupWebSocket() {
-        const ws = new WebSocketService('ws://localhost:8080');
+        const ws = new WebSocketService(import.meta.env.VITE_WS_HOST);
         ws.connect();
 
         ws.onMessage((data) => {
 
           this.candidates = data.candidates.map((candidate, index) => {
             // Anima o percentual de votos
-            this.animateNumber(this.candidates[index]?.percent || 0, candidate.percent, `percentRef${index}`, true);
+            this.animatePercent(this.candidates[index]?.percent || 0, candidate.percent, `percentRef${index}`, true);
             // Anima o número de votos
             this.animateNumber(this.candidates[index]?.votes || 0, candidate.votes, `votesRef${index}`);
             
@@ -249,18 +249,18 @@
           });
 
           // Atualiza o estado com os dados recebidos
-          this.animateNumber(this.percentApurado, data.percentApurado, 'percentApuradoRef');
+          this.animatePercent(this.percentApurado, data.percentApurado, 'percentApuradoRef');
           this.animateNumber(this.secoesApuradas, data.secoesApuradas, 'secoesApuradasRef');
           this.animateNumber(this.candidates, data.candidates, 'candidatesRef');
           this.animateNumber(this.total, data.total, 'totalRef');
           this.animateNumber(this.validos, data.validos, 'validosRef');
-          this.animateNumber(this.validosPercent, data.validosPercent, 'validosPercentRef');
+          this.animatePercent(this.validosPercent, data.validosPercent, 'validosPercentRef');
           this.animateNumber(this.brancos, data.brancos, 'brancosRef');
-          this.animateNumber(this.brancosPercent, data.brancosPercent, 'brancosPercentRef');
+          this.animatePercent(this.brancosPercent, data.brancosPercent, 'brancosPercentRef');
           this.animateNumber(this.nulos, data.nulos, 'nulosRef');
-          this.animateNumber(this.nulosPercent, data.nulosPercent, 'nulosPercentRef');
+          this.animatePercent(this.nulosPercent, data.nulosPercent, 'nulosPercentRef');
           this.animateNumber(this.abstencoes, data.abstencoes, 'abstencoesRef');
-          this.animateNumber(this.abstencoesPercent, data.abstencoesPercent, 'abstencoesPercentRef');
+          this.animatePercent(this.abstencoesPercent, data.abstencoesPercent, 'abstencoesPercentRef');
           
           this.animateProgressBar(data.percentApurado, 'progressBar'); // Anima a barra de progresso
 
@@ -289,9 +289,9 @@
         anime({
           targets: this.$refs[refName],
           innerHTML: [oldValue, newValue],
-          round: 10, // Arredonda o valor para inteiros
+          round: 1, // Arredonda o valor para inteiros
           easing: 'easeInOutQuad',
-          duration: 4000,
+          duration: 3000,
           translateX: [0, 0]
         });
       },
@@ -301,7 +301,18 @@
           targets: this.$refs[refName],
           width: `${newPercent}%`,
           easing: 'easeInOutQuad',
-          duration: 4000,
+          duration: 3000,
+          translateX: [0, 0]
+        });
+      },
+
+      animatePercent(oldValue, newValue, refName, decimal = false) {
+        anime({
+          targets: this.$refs[refName],
+          innerHTML: [oldValue, newValue],
+          round: 100,
+          easing: 'easeInOutQuad',
+          duration: 3000,
           translateX: [0, 0]
         });
       },
